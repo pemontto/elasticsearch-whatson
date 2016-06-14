@@ -65,8 +65,6 @@
 					host = host.replace(/\/$/g, "");
 					if ( null == host.match(/^https?:\/\//) )
 						host = 'http://' + host;
-					if ( null == host.match(/:[0-9]*$/) )
-						host += ':9200';
 
 					$( '#navbar-clusterconfig-host' ).val( host );
 				}
