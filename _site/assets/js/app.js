@@ -26,7 +26,7 @@
 				self._info.host = window.location.protocol + '//' + window.location.host;
 			} else {
 				// Running elsewhere
-				self._info.host = '';
+				self._info.host = getUrlParameter('host');
 			}
 			$( '#navbar-clusterconfig-host' ).val( self._info.host );
 			self._refresh_interval = 5000;
@@ -2122,6 +2122,21 @@
 		else
 			return deleted / ( docs + deleted );
 	}
+
+	var getUrlParameter = function getUrlParameter(sParam) {
+		var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	};
 
 	$( function() {
 		cluster.init();
